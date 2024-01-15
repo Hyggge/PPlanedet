@@ -77,6 +77,7 @@ class Detect(object):
 
     def preprocess(self, img_path):
         ori_img = cv2.imread(img_path)
+        ori_img = cv2.resize(ori_img, (self.cfg.ori_img_w, self.cfg.ori_img_h))
         img = ori_img[self.cfg.cut_height:, :, :].astype(np.float32)
         vis_img = copy(img)
         data = {'img': img, 'lanes': [],}

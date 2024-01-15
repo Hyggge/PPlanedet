@@ -9,8 +9,8 @@ backbone = dict(
 )
 
 num_points = 72
-max_lanes = 4
-sample_y = range(589, 230, -20)
+max_lanes = 6
+sample_y = range(589, 230, -2)
 featuremap_out_channel = 192
 
 heads = dict(name='CLRHead',

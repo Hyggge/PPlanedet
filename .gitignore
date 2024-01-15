@@ -136,3 +136,6 @@ checkpoints
 # benchmark
 .benchmarks
 .benchmark-collect
+
+/pretrained
+/sample

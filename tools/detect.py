@@ -131,7 +131,6 @@ class Detect(object):
         added_image = visualizes(
             im, pred, color_map, weight=0.6)
         added_image_path = os.path.join(added_saved_dir, im_file)
-        mkdir(added_image_path)
         cv2.imwrite(added_image_path, added_image)
 
         # save pseudo color prediction
@@ -176,7 +175,7 @@ def process(args):
     detect = Detect(cfg)
     paths = get_img_paths(args.img)
     for p in tqdm(paths):
-        detect.run(p,args.img)
+        detect.run(p, os.path.dirname(p))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()

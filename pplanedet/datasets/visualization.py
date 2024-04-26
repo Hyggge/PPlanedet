@@ -4,12 +4,17 @@ import os.path as osp
 import numpy as np
 
 def imshow_lanes(img, lanes, show=False, out_file=None):
-    img = cv2.resize(img, (1280, 720))
+    # pretrain_size is the same size as the image input during training (`ori_img_w` and `ori_img_h` in config file)
+    pretrain_size = (1640, 590)
+    # target_size is the same size as the image input during inference
+    target_size = (2048, 1024)
+    img = cv2.resize(img, target_size)
     mask = np.zeros_like(img)
 
     for lane in lanes:
         for i, (x, y) in enumerate(lane):
-            x, y = x / 1640 * 1280, y / 590 * 720
+            x = x / pretrain_size[0] * target_size[0]
+            y = y / pretrain_size[1] * target_size[1]
             if i == 0:
                 last_point = (int(x), int(y))
                 continue
